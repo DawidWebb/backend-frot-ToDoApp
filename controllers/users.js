@@ -1,3 +1,5 @@
+const { v4: uuid } = require("uuid");
+
 const { tasksList } = require("./tasksList");
 
 const usersData = [
@@ -9,9 +11,10 @@ const usersData = [
   },
   {
     accessLevel: 1,
+    jwt: uuid(),
     courses: [tasksList.map((course) => course.id)],
     login: "Admin",
-    password: "******",
+    password: "11",
   },
 ];
 

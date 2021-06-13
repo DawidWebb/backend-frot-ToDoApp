@@ -112,6 +112,7 @@ exports.postList = (request, response, next) => {
 };
 
 exports.putList = (request, response, next) => {
+  console.log(request.body);
   try {
     const { name, id, task } = request.body;
     if (!name || id || !task) {

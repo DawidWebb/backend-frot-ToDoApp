@@ -1,13 +1,13 @@
 {
   "name": "backend-react-project",
   "version": "1.0.0",
-  "description": "Mini backend for course React od podstaw on Udemy",
+  "description": "mini backend for ToDoApp",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mateusz Doman89 Domański",
+  "author": "DawidWebb",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
