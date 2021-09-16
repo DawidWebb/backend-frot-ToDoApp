@@ -32,9 +32,7 @@ const tasksList = [
 
 exports.getLists = (request, response, next) => {
   try {
-    response.status(200).json({
-      tasks: tasksList,
-    });
+    response.status(200).json(tasksList);
   } catch (error) {
     response.status(500).json({
       error,
@@ -46,25 +44,23 @@ exports.getLists = (request, response, next) => {
 
 exports.getList = (request, response, next) => {
   try {
-    const { id } = request.params;
-    const listToSend = tasksList.find((list) => list.id === id);
+    const { name } = request.params;
+    const listToSend = tasksList.find((list) => list.name == name);
 
     if (!listToSend) {
       response.status(404).json({
-        message: "Nie znaleziono listy zadań  o podanym id",
+        message: `Nie znaleziono listy o nazwie: ${name}`,
       });
 
       return;
     }
 
-    response.status(200).json({
-      task: listToSend,
-    });
+    response.status(200).json(listToSend);
   } catch (error) {
     response.status(500).json({
       error,
       message:
-        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /courses/:id",
+        "Oops! Coś poszło nie tak, przy metodzie GET w endpointcie /tasks-list/:name",
     });
   }
 };
@@ -99,9 +95,7 @@ exports.postList = (request, response, next) => {
 
     tasksList.push(newList);
 
-    response.status(201).json({
-      lists: tasksList,
-    });
+    response.status(201).json(newList);
   } catch (error) {
     response.status(500).json({
       error,
@@ -112,10 +106,9 @@ exports.postList = (request, response, next) => {
 };
 
 exports.putList = (request, response, next) => {
-  console.log(request.body);
   try {
     const { name, id, task } = request.body;
-    if (!name || id || !task) {
+    if (!name || !id || !task) {
       response.status(400).json({
         message: "Nie podano wszystkich wymaganych informacji",
       });
@@ -134,9 +127,7 @@ exports.putList = (request, response, next) => {
 
     tasksList.splice(indexListToUpdate, 1, request.body);
 
-    response.status(202).json({
-      lists: tasksList,
-    });
+    response.status(202).json(tasksList);
   } catch (error) {
     response.status(500).json({
       error,
@@ -154,7 +145,7 @@ exports.deleteList = (request, response, next) => {
 
     if (indexListToDelete === -1) {
       response.status(404).json({
-        message: "Nie znaleziono listy zadań  o podanym id",
+        message: "Nie znaleziono listy zadań o podanym id",
       });
 
       return;

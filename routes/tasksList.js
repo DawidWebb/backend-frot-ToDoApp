@@ -4,7 +4,7 @@ const tasksList = require("../controllers/tasksList");
 
 const router = express.Router();
 
-router.get("/:id", tasksList.getList);
+router.get("/:name", tasksList.getList);
 router.get("/", tasksList.getLists);
 router.post("/", tasksList.postList);
 router.put("/", tasksList.putList);
